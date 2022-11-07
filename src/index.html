@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+    <style>
+        .form-box {
+            text-align: center;
+        }
+
+        form {
+            display: inline-block;
+            text-align: center;
+        }
+
+        table, th, td{
+            margin: auto;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: blue;
+            color: white;
+        }
+        tbody tr {
+            background-color: lightskyblue;
+        }
+
+        td {
+            text-align: right;
+        }
+
+        .button-alignment {
+            text-align: center;
+        }
+
+        .button-alignment input {
+            margin: 0 2% 0 ;
+        }
+
+        .override {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Factura</h1>
+    <div class="form-box">
+        <form action="">
+            Concepto <input type="text" id="concept">
+            <br>
+            <br>
+            Cantidad <input type="text" id="quantity">
+            <br>
+            <br>
+            Precio <input type="number" id="price">€
+            <br>
+            <br>
+            <input type="button" value="Insertar" onclick="insertData()">
+        </form>
+    </div>
+
+    <br>
+        <table id="table-class">
+            <thead>
+                <th>
+                    Concepto
+                </th>
+                <th>
+                    Cantidad
+                </th>
+                <th>
+                    Precio Unitario
+                </th>
+                <th>
+                    Precio Total
+                </th>
+                <th>
+                    X
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="3">
+                        Subtotal
+                    </td>
+                    <td>
+                        0.00€
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        Tasa
+                    </td>
+                    <td>
+                        30%
+                    </td>
+                    <td>
+                        Impuestos:
+                    </td>
+                    <td>
+                        0.00€
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        TOTAL
+                    </td>
+                    <td style="font-weight: bold;">
+                        0.00€
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+        <div class="button-alignment">
+            <input type="button" value="Tasa 5%">
+            <input type="button" value="Tasa 15%">
+            <input type="button" value="Tasa 30%">
+            <br>
+            <br>
+            <input type="button" value="calcular">
+        </div>
+
+        <script>
+            function insertData() {
+                //ordered by concept, quantity and price
+                let data = [document.getElementById("concept").value, parseInt(document.getElementById("quantity").value), parseFloat(document.getElementById("price").value)]
+
+                //Precio por unidad
+
+                let precio_total = data[1] * data[2]
+                
+                let table = document.getElementById("table-class")
+                
+                let row = table.insertRow(1)
+
+                let cell1 = row.insertCell(0)
+                let cell2 = row.insertCell(1)
+                let cell3 = row.insertCell(2)
+                let cell4 = row.insertCell(3)
+                let cell5 = row.insertCell(4);
+
+                cell1.innerHTML = data[0];
+                cell2.innerHTML = data[1];
+                cell3.innerHTML = data[2];
+                cell4.innerHTML = precio_total;
+                cell5.innerHTML = "X"
+            }
+        </script>
+
+</body>
+</html>
