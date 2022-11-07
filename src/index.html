@@ -87,7 +87,7 @@
                     <td colspan="3">
                         Subtotal
                     </td>
-                    <td>
+                    <td id="subtotal">
                         0.00€
                     </td>
                     <td>
@@ -98,7 +98,7 @@
                     <td >
                         Tasa
                     </td>
-                    <td>
+                    <td id="tasa">
                         30%
                     </td>
                     <td>
@@ -128,9 +128,9 @@
         <br>
 
         <div class="button-alignment">
-            <input type="button" value="Tasa 5%">
-            <input type="button" value="Tasa 15%">
-            <input type="button" value="Tasa 30%">
+            <input type="button" value="Tasa 5%" onclick="changeTax(this)">
+            <input type="button" value="Tasa 15%" onclick="changeTax(this)">
+            <input type="button" value="Tasa 30%" onclick="changeTax(this)">
             <br>
             <br>
             <input type="button" value="calcular">
@@ -160,6 +160,21 @@
                 cell3.innerHTML = data[2];
                 cell4.innerHTML = precio_total;
                 cell5.innerHTML = "X"
+
+                update(precio_total)
+            }
+
+            function update(price) {
+                original_price = parseInt(document.getElementById("subtotal").innerText)
+                document.getElementById("subtotal").innerHTML = original_price + price + "€"
+
+                // console.log(original_price);
+            }
+
+            function changeTax(x) {
+                if (x.getAttribute("value") == "Tasa 5%") {
+                    doc
+                }
             }
         </script>
 
