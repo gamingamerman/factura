@@ -166,14 +166,25 @@
 
             function update(price) {
                 original_price = parseInt(document.getElementById("subtotal").innerText)
+                taxed_price = parseIntdocument.getElementById('tasa').innerHTML
+
                 document.getElementById("subtotal").innerHTML = original_price + price + "€"
+
 
                 // console.log(original_price);
             }
 
             function changeTax(x) {
-                if (x.getAttribute("value") == "Tasa 5%") {
-                    doc
+                switch (x.getAttribute("value")) {
+                    case "Tasa 5%":
+                        document.getElementById('tasa').innerHTML = "5%"
+                        break;
+                    case "Tasa 15%":
+                        document.getElementById('tasa').innerHTML = "15%"
+                        break;
+                    default:
+                        document.getElementById('tasa').innerHTML = "30%"
+                        break;
                 }
             }
         </script>
