@@ -160,6 +160,9 @@
                 cell3.innerHTML = data[2];
                 cell4.innerHTML = precio_total + "€";
                 cell5.innerHTML = "X"
+                // cell5.setAttribute('onClick', 'deleteProduct(this)');
+                row.setAttribute('onClick', 'deleteProduct(this)')
+                cell5.setAttribute('value', data[0])
 
                 update(precio_total)
                 
@@ -177,13 +180,14 @@
                 let updated_tax = document.getElementById('tax-total').innerHTML = parseFloat((taxed_price/100) * ( original_price + price)).toFixed(2);
 
                 //PRECIO TOTAL
-                document.getElementById('total-price').innerHTML = parseFloat((original_price + price) + updated_tax).toFixed(2)
+                document.getElementById('total-price').innerHTML = (original_price + price) + parseFloat(updated_tax)
             }
 
             function changeTax(x) {
                 switch (x.getAttribute("value")) {
                     case "Tasa 5%":
                         document.getElementById('tasa').innerHTML = "5%"
+                        document.getElementById('subtotal').innerHTML 
                         break;
                     case "Tasa 15%":
                         document.getElementById('tasa').innerHTML = "15%"
@@ -192,6 +196,11 @@
                         document.getElementById('tasa').innerHTML = "30%"
                         break;
                 }
+            }
+
+            function deleteProduct(x) {
+                let table = document.getElementById("table-class")
+                table.deleteRow(x.rowIndex)
             }
         </script>
 
